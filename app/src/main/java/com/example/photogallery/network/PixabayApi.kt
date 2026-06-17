@@ -3,7 +3,7 @@ package com.example.photogallery.network
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val API_KEY = "ВАШ_PIXABAY_API_KEY"
+private const val API_KEY = "56351591-c36913a7bf65b2091735fb6b3"
 
 interface PixabayApi {
 
