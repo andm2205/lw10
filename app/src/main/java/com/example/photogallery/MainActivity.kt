@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.example.photogallery.ui.PhotoGalleryTopBar
 import com.example.photogallery.ui.PhotoGalleryViewModel
 import com.example.photogallery.ui.theme.PhotoGalleryTheme
 
@@ -31,8 +32,21 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PhotoGalleryTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    PhotoGalleryScreen(modifier = Modifier.padding(innerPadding))
+                val viewModel: PhotoGalleryViewModel = viewModel()
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        PhotoGalleryTopBar(
+                            onSearch = { query -> viewModel.search(query) },
+                            onShowFavorites = { },
+                            onClearFavorites = { }
+                        )
+                    }
+                ) { innerPadding ->
+                    PhotoGalleryScreen(
+                        modifier = Modifier.padding(innerPadding),
+                        viewModel = viewModel
+                    )
                 }
             }
         }
